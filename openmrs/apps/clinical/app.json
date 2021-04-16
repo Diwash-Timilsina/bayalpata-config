@@ -1887,7 +1887,16 @@
 			},
 			"Covid-Visit type": {
 				"required": true
-			}
+			},
+			"NBA-Gestational week": {
+				"required": true
+			},
+			"NBA-Neonate weight": {
+				"required": true
+			},
+			"NBA-Child born": {
+				"required": true
+				}
 		},
 		"visitPage": {
 			"observationDisplay": {
