@@ -7,7 +7,7 @@ SELECT
 FROM
 -- ----------------------------------------------
 (SELECT T1.Weight_Category AS BirthWeight,
-Sum(IF(InfantStatus IN ('Defect','Asphyxia','Normal','New born status, Hypothermia','Jaundice'), 1, 0)) AS TotalNo,
+Sum(IF(InfantStatus IN ('Defect','Asphyxia','Normal','Hypothermia','Jaundice','Caput'), 1, 0)) AS TotalNo,
 Sum(IF(InfantStatus = 'Asphyxia', 1, 0)) AS Asphyxia,
 Sum(IF(InfantStatus = 'Defect', 1, 0)) AS Defect
 
@@ -35,6 +35,8 @@ WHEN t2.name ='Normal' THEN 'Normal'
 WHEN t2.name ='New born status, Hypothermia' THEN 'New born status, Hypothermia'
 WHEN t2.name ='Jaundice' THEN 'Jaundice'
 WHEN t2.name ='Disabled' THEN 'Defect'
+when t2.name ='Caput' then 'Caput'
+
 ELSE 0
 END
 AS InfantStatus FROM obs t1
