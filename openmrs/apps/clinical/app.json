@@ -945,6 +945,9 @@
 			"Delivery Note, Blood transfusion quantity": {
 				"required": true
 			},
+			"Delivery-Gestation period": {
+				"required": true
+			},
 			"Discharge note, Inpatient outcome": {
 				"required": true
 			},
