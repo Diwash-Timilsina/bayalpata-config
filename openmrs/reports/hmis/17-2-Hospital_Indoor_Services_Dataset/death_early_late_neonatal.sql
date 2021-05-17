@@ -26,10 +26,10 @@ INNER JOIN
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Death Note, Primary Cause of Death')
+        AND cn1.name IN ('Death note-Primary cause of death')
         AND o1.voided = 0
         AND cn1.voided = 0
-    INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
+    INNER JOIN concept_name cn2 ON o1.concept_id = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
         AND cn2.voided = 0
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
@@ -40,10 +40,3 @@ INNER JOIN
         )b group by b.agegroup,b.gender) first_concept ON first_concept.agegroup=age_days_grp.age_days
         AND first_concept.gender = gender.gender
         Group BY age_days_grp.age_days,gender.gender
-       
-         
-        
-        
-        
-       
-        
