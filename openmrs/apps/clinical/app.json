@@ -948,7 +948,7 @@
 			"Delivery-Gestation period": {
 				"required": true
 			},
-			"Discharge note, Inpatient outcome": {
+			"Discharge-Inpatient outcome": {
 				"required": true
 			},
 			"FP, Family Planning Method": {
