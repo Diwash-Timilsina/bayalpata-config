@@ -14,7 +14,7 @@ FROM
 UNION SELECT 
     'Number of beds' AS Reports, COUNT(*) AS Count
 FROM
-    bed_location_map 
+    bed_location_map where bed_id !='null' 
 UNION SELECT 
 'Number of beds sanction ' AS Reports,property_value AS Count
 FROM global_property WHERE property='hospital.assigned.bed'
