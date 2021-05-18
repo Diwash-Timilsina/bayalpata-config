@@ -26,7 +26,7 @@ IFNULL(SUM(CASE WHEN second_concept.gender = 'M' AND second_concept.person_id IS
 IFNULL(SUM(CASE WHEN second_concept.gender = 'F' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '40 ‐ 49 Years'  THEN 1 ELSE 0  END), 0) AS 'F 40 ‐ 49 Years',
 IFNULL(SUM(CASE WHEN second_concept.gender = 'M' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '40 ‐ 49 Years'  THEN 1 ELSE 0  END), 0) AS 'M 40 ‐ 49 Years',
 
-IFNULL(SUM(CASE WHEN second_concept.gender = 'F' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '50 ‐ 59 Years'  THEN 1 ELSE 0  END), 0) AS 'F ≤ 28 Days',
+IFNULL(SUM(CASE WHEN second_concept.gender = 'F' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '50 ‐ 59 Years'  THEN 1 ELSE 0  END), 0) AS 'F 50 ‐ 59 Years',
 IFNULL(SUM(CASE WHEN second_concept.gender = 'M' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '50 ‐ 59 Years'  THEN 1 ELSE 0  END), 0) AS 'M 50 ‐ 59 Years',
 
 IFNULL(SUM(CASE WHEN second_concept.gender = 'F' AND second_concept.person_id IS NOT NULL AND second_concept.age_grp = '≥ 60 Years'  THEN 1 ELSE 0  END), 0) AS 'F ≥ 60 Years',
