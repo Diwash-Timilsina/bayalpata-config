@@ -456,9 +456,7 @@
 			"Out Patient Details, Problem": {
 				"allowAddMore": true
 			},
-			"Chronic 
-			
-			Details, Duration": {
+			"Chronic OPD Details, Duration": {
 				"conciseText": true
 			},
 			"Chronic OPD Details, Timing": {
