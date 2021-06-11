@@ -923,7 +923,7 @@
 			"Childhood Illness, Referred out": {
 				"required": true
 			},
-			"ER General Notes, Free Health Service Code": {
+			"ER-Free health service code": {
 				"required": true
 			},
 			"Chronic OPD Details, Free Health Service Code": {
