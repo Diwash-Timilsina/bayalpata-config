@@ -456,7 +456,9 @@
 			"Out Patient Details, Problem": {
 				"allowAddMore": true
 			},
-			"Chronic OPD Details, Duration": {
+			"Chronic 
+			
+			Details, Duration": {
 				"conciseText": true
 			},
 			"Chronic OPD Details, Timing": {
@@ -876,7 +878,7 @@
 				"answersConceptName": "Death Note, Cause, Answers",
 				"autocomplete": true
 			},
-			"Out Patient Details, Free Health Service Code": {
+			"OPD-Free health service code": {
 				"required": true
 			},
 			"ANC, Visit Month": {
