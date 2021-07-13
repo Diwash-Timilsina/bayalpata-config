@@ -1,3 +1,4 @@
+
 SELECT 
     first_answers.answer_name AS 'ICD name',
     first_answers.icd10_code AS 'ICD CODE',
@@ -25,7 +26,8 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H35.9','H35','H02.0','H02.1','S05.9','H44.0','H53.2','H53.9','H50.9','H35.5','H53.6','C62.9')) first_answers
+        icd10_code IN ('H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H36.0*','H35','H02.0','H02.1','S05.9',
+'H35.9','H50.9','H35.5','H53.6','C69.2')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -46,30 +48,22 @@ FROM
         AND cn.name IN ('Coded Diagnosis')
         AND o.voided = 0
         AND cn.voided = 0
-  JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H35.9','H35','H02.0','H02.1','S05.9','H44.0','H53.2','H53.9','H50.9','H35.5','H53.6','C62.9')
+     JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
+        AND dcv.icd10_code IN ('H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H36.0*','H35','H02.0','H02.1','S05.9',
+'H35.9','H50.9','H35.5','H53.6','C69.2')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (person.person_id) AS person_id,
-            cn2.concept_id AS answer,
-            obs.concept_id AS question,
-            obs.obs_datetime AS datetime,
             visit.visit_id AS visit_id,
             person.gender AS gender
-    FROM
-        obs
-    INNER JOIN concept_view question ON obs.concept_id = question.concept_id
-        AND question.concept_full_name IN ('Department Sent To')
-    INNER JOIN concept_name cn2 ON obs.value_coded = cn2.concept_id
-        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-  AND UPPER(cn2.name) NOT Like '%EMERGENCY%'
-    INNER JOIN person ON obs.person_id = person.person_id
-    INNER JOIN encounter ON obs.encounter_id = encounter.encounter_id
-    INNER JOIN visit ON encounter.visit_id = visit.visit_id
+   FROM person 
+     JOIN visit  ON person_id = visit.patient_id 
+     JOIN visit_type vt ON visit.visit_type_id = vt.visit_type_id AND vt.name != 'IPD'
     WHERE
-        CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
+        cast(visit.date_started AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H35.9','H35','H02.0','H02.1','S05.9','H44.0','H53.2','H53.9','H50.9','H35.5','H53.6','C62.9')
+ORDER BY FIELD(first_answers.icd10_code, 'H10.9','A71.9','H26','H54.0','H52.7','H40.9','H53.5','H05.2','H00.0','H00','H11.0','H36.0*','H35','H02.0','H02.1','S05.9',
+'H35.9','H50.9','H35.5','H53.6','C69.2')
